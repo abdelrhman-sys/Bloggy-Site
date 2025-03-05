@@ -1,0 +1,11 @@
+<%- include("partials/header.ejs") %>
+<div>
+    <form action="/" method="POST" class="post-form">
+        <label for="title"> Title:</label>
+        <input id="title" placeholder="Enter Title" name="title" value="<% if (locals.postT) {%><%= postT %><% } %>" required />
+        <label for="content">Content:</label>
+        <textarea id="content" placeholder="Write Your Post.." name="content" rows="15" required><% if (locals.postC) { %><%= postC %><% } %></textarea>
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+<%- include("partials/footer.ejs") %>

@@ -1,0 +1,30 @@
+<%- include("partials/header.ejs") %>
+<main>
+    <% if(locals.post){ for (let i = post.length-1; i >= 0; i--) { %>
+        <div class="post">
+            <div class="post-div">
+                <div class="post-head">
+                    <p class="post-date"><%= post[i].date %></p>
+                    <% if(locals.post[i].edited){ %>
+                        <p class="post-edit"><%= post[i].edited %></P>
+                    <% } %>
+                </div>
+                <p class="post-title"><%= post[i].title %></p>
+                <hr/>
+                <p class="post-content"><%= post[i].content %></p>
+            </div>
+            <div>
+                <form action="/edit" method="GET" style="display:inline;">
+                    <button class="post-btn" id="edit-btn" name="post-index" value="<%= i %>" >Edit</button>
+                </form>
+                <form action="/home" method="GET" style="display:inline;">
+                    <button class="post-btn" id="delete-btn" name="post-index" value="<%= i %>">Delete</button>
+                </form>
+            </div>
+        </div>
+    <% }} else{ %>
+        <h1>No posts to show...😓</h1>
+    <% } %>    
+</main>
+<a href="/create"><button class="add-btn">+ Add Post</button></a>
+<%- include("partials/footer.ejs") %>
