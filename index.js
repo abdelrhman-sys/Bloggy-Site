@@ -1,6 +1,12 @@
 import express from "express";
 import bodyParser from "body-parser";
 import session from "express-session";
+import { fileURLToPath } from 'url';
+import path from 'path';
+import ejs from "ejs";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app =express();
 
 let posts= [];
@@ -10,6 +16,10 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
+app.engine('ejs', ejs.renderFile);  // Register the EJS engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static("public")); 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -74,7 +84,13 @@ app.get("/", (req, res)=> {
         posts=[];
     }
 });
-
+app.get('/favicon.ico', (req, res) => res.status(204).end());// ignore favicon in vercel
+app.get('/favicon.png', (req, res) => res.status(204).end());
+//temporarily to verify file serving
+app.get('/debug-css', (req, res) => {
+    const cssPath = path.join(__dirname, 'public', 'index.css');
+    res.sendFile(cssPath);
+});
 app.listen("3000", ()=> {
     console.log("Server is running on port 3000");
 });
