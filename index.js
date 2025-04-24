@@ -4,15 +4,18 @@ import session from "express-session";
 import { fileURLToPath } from 'url';
 import path from 'path';
 import ejs from "ejs";
+import env from "dotenv";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app =express();
 
+env.config();
+
 let posts= [];
 let comingRoute = "";
 app.use(session({
-    secret: "mySecretKey",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }));
