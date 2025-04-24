@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: #2D336B;
+    background-color: #181C14;
     margin: 0;
     height: 100vh;
     color: #FFF2F2;
@@ -10,7 +10,7 @@ a {
     text-decoration: none;
 }
 header {
-    background-color: #7886c7e0;
+    background-color: #3C3D37;
     border-radius: 7px;
 }
 footer, h1 {
@@ -27,7 +27,7 @@ form {
 }
 .post-form {
     border-radius: 15px;
-    background-color: #7886c7a4;
+    background-color: #697565;
     padding: 20px;
     margin-top: 40px;
     margin-bottom: 10px;
@@ -51,7 +51,7 @@ label {
     padding: 7px 12px;
     margin-top: 7px;
     margin-left: 47%;
-    background-color: #7886C7;
+    background-color: green;
     box-shadow: 1px 1px;
     width: 70px; 
     border-radius: 10px;
@@ -77,7 +77,7 @@ label {
     margin-bottom: 7px;
     border-radius: 7px;
     padding: 0 0 8px 5px;
-    background-color: #7886c7d0;
+    background-color: #697565;
     font-family: sans-serif;
     box-shadow: 0 2.5px 1.5px;
 }
@@ -92,7 +92,7 @@ hr {
     background-color: rgba(255, 0, 0, 0.462);
 }
 #edit-btn {
-    background-color: #7886C7;
+    background-color: grey;
     padding: 9px;
 }
 #edit-btn:hover {
@@ -118,7 +118,7 @@ hr {
     border-radius: 9px;
     padding: 15px;
     border: 0px solid;
-    background-color: #202955;
+    background-color: #0B192C;
     box-shadow: 0 1px 1px;
     color: #fff2f2e3;
 }
