@@ -13,12 +13,8 @@ const app =express();
 env.config();
 
 let posts= [];
+let postIndex ; 
 let comingRoute = "";
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true
-}));
 
 app.engine('ejs', ejs.renderFile);  // Register the EJS engine
 app.set('view engine', 'ejs');
@@ -46,8 +42,8 @@ app.get("/home", (req, res)=> {
 });
 
 app.get("/edit", (req, res)=>{
-    req.session.index = parseInt(req.query["post-index"], 10);
-    res.render("post.ejs", {postT: posts[req.session.index].title, postC: posts[req.session.index].content});
+    postIndex = parseInt(req.query["post-index"], 10);
+    res.render("post.ejs", {postT: posts[postIndex].title, postC: posts[postIndex].content});
 });
 
 app.post("/", (req, res)=>{
@@ -58,12 +54,12 @@ app.post("/", (req, res)=>{
     }
     else {
         //edit route
-        if (req.session.index !== undefined) {
+        if (postIndex !== undefined) {
             // if really edited
-            if (posts[req.session.index].title !== req.body["title"] || posts[req.session.index].content !== req.body["content"]) {
-                posts[req.session.index].title = req.body["title"];
-                posts[req.session.index].content = req.body["content"];//Update title and content
-                posts[req.session.index].edited = "Edited";
+            if (posts[postIndex].title !== req.body["title"] || posts[postIndex].content !== req.body["content"]) {
+                posts[postIndex].title = req.body["title"];
+                posts[postIndex].content = req.body["content"];//Update title and content
+                posts[postIndex].edited = "Edited";
             }
         } else {
             // Handle the error case where the index is invalid
